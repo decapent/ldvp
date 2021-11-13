@@ -13,7 +13,10 @@ GO
 
 CREATE VIEW [dbo].[VW_SnackRedeems]
 AS
-	SELECT m.Date, s.Nom, ms.quantity, ms.quantity * 50 As ChannelPoints
+	SELECT m.Date AS MatchDate, 
+		   s.Nom AS SnackName, 
+		   ms.quantity AS Quantity, 
+		   ms.quantity * 50 AS ChannelPoints
 	  FROM MatchSnack ms
 	 INNER JOIN Snack s ON ms.snackId = s.id
      	INNER JOIN Match m ON ms.matchId = m.id

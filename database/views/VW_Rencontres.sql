@@ -13,12 +13,21 @@ GO
 
 CREATE VIEW [dbo].[VW_Rencontres]
 AS
-SELECT m.Date, r.Heure, m.Type, j.Nom, 
-	   rj.Equipe, rj.Home, rj.AllowedGoals, 
-	   rj.ScoredGoals, rj.Shots, rj.ShotAgainst, rj.BodyChecks, 
+SELECT m.Date, 
+	   r.Heure, 
+	   m.Type, 
+	   j.Nom, 
+	   rj.Equipe, 
+	   rj.Home, 
+	   rj.AllowedGoals AS GoalAgainst, 
+	   rj.ScoredGoals AS Goals, 
+	   (rj.AllowedGoals/NULLIF(CAST(rj.ScoredGoals AS decimal(6,3)),0)) AS 'GA/G',
+	   rj.Shots, 
+	   rj.ShotAgainst, 
+	   rj.BodyChecks, 
 	   (rj.BodyChecks/CAST(rj.Shots AS decimal(6,3))) AS IDT,
 	   (rj.ScoredGoals/CAST(rj.Shots AS decimal(6,3))) * 100 AS ScoringPct,
-	   (rj.OneTimerSucceeded/NULLIF(CAST(rj.TotalOneTimer AS decimal(6,3)), 0)) * 100 AS OneTimerPct,
+	   (rj.OneTimerSucceeded/NULLIF(CAST(rj.TotalOneTimer AS decimal(6,3)),0)) * 100 AS OneTimerPct,
 	   (rj.FaceoffsWon/CAST(rj.TotalFaceoffs AS decimal(6,3))) * 100 AS FaceOffPct
   FROM Match m
    INNER JOIN Rencontre r ON m.id = r.matchId

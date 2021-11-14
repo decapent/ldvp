@@ -25,10 +25,11 @@ SELECT m.Date,
 	   rj.Shots, 
 	   rj.ShotAgainst, 
 	   rj.BodyChecks, 
-	   (rj.BodyChecks/CAST(rj.Shots AS decimal(6,3))) AS IDT,
-	   (rj.ScoredGoals/CAST(rj.Shots AS decimal(6,3))) * 100 AS ScoringPct,
-	   (rj.OneTimerSucceeded/NULLIF(CAST(rj.TotalOneTimer AS decimal(6,3)),0)) * 100 AS OneTimerPct,
-	   (rj.FaceoffsWon/CAST(rj.TotalFaceoffs AS decimal(6,3))) * 100 AS FaceOffPct
+	   (rj.BodyChecks/NULLIF(CAST(rj.Shots AS decimal(6,3)), 0) AS IDT,
+	   (rj.ScoredGoals/NULLIF(CAST(rj.Shots AS decimal(6,3)), 0) AS ScoringPct,
+	   (rj.OneTimerSucceeded/NULLIF(CAST(rj.TotalOneTimer AS decimal(6,3)),0)) AS OneTimerPct,
+	   (rj.FaceoffsWon/CAST(rj.TotalFaceoffs AS decimal(6,3))) AS FaceOffPct,
+	   (1 - (rj.AllowedGoals/CAST(rj.ShotAgainst AS decimal(6, 3)))) BlockRate
   FROM Match m
    INNER JOIN Rencontre r ON m.id = r.matchId
      INNER JOIN RencontreJoueur rj ON r.id = rj.rencontreId

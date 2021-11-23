@@ -17,7 +17,7 @@ SELECT j.Nom,
 	   SUM(rj.AllowedGoals) AS TotalAllowedGoals,
 	   SUM(rj.Shots) As TotalShots,
 	   SUM(rj.ShotAgainst) As TotalShotAgaints,
-	   SUM(rj.Shots) / SUM(rj.Shots) + SUM(rj.ShotAgainst) AS 'CF%'
+	   SUM(rj.Shots) / SUM(rj.Shots) + SUM(rj.ShotAgainst) AS 'CF%',
 	   AVG(rj.ScoredGoals / CAST(rj.Shots AS decimal(6, 3))) AS AvgScoringPct, 
 	   AVG(rj.OneTimerSucceeded / NULLIF (CAST(rj.TotalOneTimer AS decimal(6, 3)), 0)) AS AvgOneTimerPct, 
 	   AVG(rj.FaceoffsWon / CAST(rj.TotalFaceoffs AS decimal(6, 3))) AS AvgFaceOffPct,

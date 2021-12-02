@@ -7,11 +7,15 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+
 CREATE VIEW [dbo].[VW_PlayerCard]
 AS
 SELECT monkaTOS.*, 
-	   AvgIDT + (0.6745 * StdDevIDT) AS '50PctUpperLimit', -- Constant is an approximation of ZScore 50%
-	   AvgIDT - (0.6745 * StdDevIDT) AS '50PctLowerLimit' -- Constant is an approximation of ZScore 50%
+       -- Constant of 0.6745 is an approximation of ZScore 50%
+	   AvgIDT + (0.6745 * StdDevIDT) AS '50PctIDTUpperLimit', 
+	   AvgIDT - (0.6745 * StdDevIDT) AS '50PctIDTLowerLimit', 
+	   AvgScoringPct + (0.6745 * StdDevScoringPct) AS '50PctScoringUpperLimit',
+	   AvgScoringPct - (0.6745 * StdDevScoringPct) AS '50PctScoringLowerLimit'
   FROM (
 	SELECT j.Nom,
 		   COUNT(j.Nom) AS NbMatch, 
@@ -23,13 +27,14 @@ SELECT monkaTOS.*,
 		   SUM(rj.ShotAgainst) As TotalShotAgaints,
 		   SUM(rj.Shots) / CAST(SUM(rj.Shots) + SUM(rj.ShotAgainst) AS decimal(6,3)) AS 'CF%',
 		   AVG(rj.ScoredGoals / CAST(rj.Shots AS decimal(6, 3))) AS AvgScoringPct, 
+		   STDEV (rj.OneTimerSucceeded / NULLIF (CAST(rj.TotalOneTimer AS decimal(6, 3)), 0)) AS StdDevScoringPct,
 		   AVG(rj.OneTimerSucceeded / NULLIF (CAST(rj.TotalOneTimer AS decimal(6, 3)), 0)) AS AvgOneTimerPct, 
 		   AVG(rj.FaceoffsWon / CAST(rj.TotalFaceoffs AS decimal(6, 3))) AS AvgFaceOffPct,
 		   AVG(1 - (rj.AllowedGoals/CAST(rj.ShotAgainst AS decimal(6, 3)))) AS BlockRate,
 		   AVG(rj.BodyChecks / NULLIF(CAST(rj.Shots AS decimal(6, 3)), 0)) AS AvgIDT,
 		   MIN(rj.BodyChecks / NULLIF(CAST(rj.Shots AS decimal(6, 3)), 0)) AS MinIDT,
 		   MAX(rj.BodyChecks / NULLIF(CAST(rj.Shots AS decimal(6, 3)), 0)) AS MaxIDT,
-		   STDEV (rj.BodyChecks / NULLIF(CAST(rj.Shots AS decimal(6, 3)), 0)) AS StdDevIDT
+		   STDEV (rj.BodyChecks / NULLIF(CAST(rj.Shots AS decimal(6, 3)), 0)) AS StdDevIDT	   
 	  FROM dbo.RencontreJoueur rj 
 	 INNER JOIN dbo.Joueur j ON rj.joueurId = j.id
 	 GROUP BY j.Nom

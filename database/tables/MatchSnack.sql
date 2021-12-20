@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[MatchSnack](
+CREATE TABLE [saison2].[MatchSnack](
 	[matchId] [int] NOT NULL,
 	[snackId] [int] NOT NULL,
 	[quantity] [int] NOT NULL,
@@ -20,17 +20,17 @@ CREATE TABLE [dbo].[MatchSnack](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[MatchSnack]  WITH CHECK ADD  CONSTRAINT [FK_MatchSnack_Match] FOREIGN KEY([matchId])
-REFERENCES [dbo].[Match] ([id])
+ALTER TABLE [saison2].[MatchSnack]  WITH CHECK ADD  CONSTRAINT [FK_MatchSnack_Match] FOREIGN KEY([matchId])
+REFERENCES [saison2].[Match] ([id])
 GO
 
-ALTER TABLE [dbo].[MatchSnack] CHECK CONSTRAINT [FK_MatchSnack_Match]
+ALTER TABLE [saison2].[MatchSnack] CHECK CONSTRAINT [FK_MatchSnack_Match]
 GO
 
-ALTER TABLE [dbo].[MatchSnack]  WITH CHECK ADD  CONSTRAINT [FK_MatchSnack_Snack] FOREIGN KEY([snackId])
-REFERENCES [dbo].[Snack] ([id])
+ALTER TABLE [saison2].[MatchSnack]  WITH CHECK ADD  CONSTRAINT [FK_MatchSnack_Snack] FOREIGN KEY([snackId])
+REFERENCES [saison2].[Snack] ([id])
 GO
 
-ALTER TABLE [dbo].[MatchSnack] CHECK CONSTRAINT [FK_MatchSnack_Snack]
+ALTER TABLE [saison2].[MatchSnack] CHECK CONSTRAINT [FK_MatchSnack_Snack]
 GO
 

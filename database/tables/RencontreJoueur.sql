@@ -1,14 +1,14 @@
 USE [LDVP]
 GO
 
-/****** Object:  Table [dbo].[RencontreJoueur]    Script Date: 2021-11-13 12:08:49 PM ******/
+/****** Object:  Table [saison2].[RencontreJoueur]    Script Date: 2021-11-13 12:08:49 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[RencontreJoueur](
+CREATE TABLE [saison2].[RencontreJoueur](
 	[rencontreId] [int] NOT NULL,
 	[joueurId] [int] NOT NULL,
 	[Equipe] [nvarchar](max) NOT NULL,
@@ -32,17 +32,17 @@ CREATE TABLE [dbo].[RencontreJoueur](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Joueur] FOREIGN KEY([joueurId])
-REFERENCES [dbo].[Joueur] ([id])
+ALTER TABLE [saison2].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Joueur] FOREIGN KEY([joueurId])
+REFERENCES [saison2].[Joueur] ([id])
 GO
 
-ALTER TABLE [dbo].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Joueur]
+ALTER TABLE [saison2].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Joueur]
 GO
 
-ALTER TABLE [dbo].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Rencontre] FOREIGN KEY([rencontreId])
-REFERENCES [dbo].[Rencontre] ([id])
+ALTER TABLE [saison2].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Rencontre] FOREIGN KEY([rencontreId])
+REFERENCES [saison2].[Rencontre] ([id])
 GO
 
-ALTER TABLE [dbo].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Rencontre]
+ALTER TABLE [saison2].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Rencontre]
 GO
 

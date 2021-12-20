@@ -11,7 +11,7 @@ GO
 
 
 
-CREATE VIEW [dbo].[VW_Rencontres]
+CREATE VIEW [saison2].[VW_Rencontres]
 AS
 SELECT m.Date, 
 	   r.Heure, 

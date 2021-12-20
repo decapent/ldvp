@@ -11,7 +11,7 @@ GO
 
 
 
-CREATE VIEW [dbo].[VW_SnackRedeems]
+CREATE VIEW [saison2].[VW_SnackRedeems]
 AS
 	SELECT m.Date AS MatchDate, 
 		   s.Nom AS SnackName, 

@@ -8,7 +8,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE VIEW [dbo].[VW_PlayerCard]
+CREATE VIEW [saison2].[VW_PlayerCard]
 AS
 SELECT monkaTOS.*, 
        -- Constant of 0.6745 is an approximation of ZScore 50%

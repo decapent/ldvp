@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[Snack](
+CREATE TABLE [saison2].[Snack](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[Nom] [nvarchar](max) NULL,
  CONSTRAINT [PK_Snack] PRIMARY KEY CLUSTERED 

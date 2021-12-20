@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[Match](
+CREATE TABLE [saison2].[Match](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[Date] [date] NULL,
 	[Type] [nvarchar](max) NULL,

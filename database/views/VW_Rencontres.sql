@@ -35,6 +35,6 @@ SELECT m.Date,
    INNER JOIN Rencontre r ON m.id = r.matchId
      INNER JOIN RencontreJoueur rj ON r.id = rj.rencontreId
 	   INNER JOIN Joueur j ON rj.joueurId = j.id
-	   	INNER JOIN Commentateur c ON r.[commentateurId] = c.id
+	   	INNER JOIN Commentateur c ON r.commentateurId = c.id
 GO
 

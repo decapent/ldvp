@@ -37,8 +37,8 @@ SELECT monkaTOS.*,
 		   MIN(rj.BodyChecks / NULLIF(CAST(rj.Shots AS decimal(6, 3)), 0)) AS MinIDT,
 		   MAX(rj.BodyChecks / NULLIF(CAST(rj.Shots AS decimal(6, 3)), 0)) AS MaxIDT,
 		   STDEV (rj.BodyChecks / NULLIF(CAST(rj.Shots AS decimal(6, 3)), 0)) AS StdDevIDT	   
-	  FROM dbo.RencontreJoueur rj 
-	 INNER JOIN dbo.Joueur j ON rj.joueurId = j.id
+	  FROM saison2.RencontreJoueur rj 
+	 INNER JOIN saison2.Joueur j ON rj.joueurId = j.id
 	 GROUP BY j.Nom
 ) AS monkaTOS
 GO

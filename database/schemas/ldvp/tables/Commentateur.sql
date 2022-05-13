@@ -7,7 +7,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [saison2].[Commentateur](
+CREATE TABLE [ldvp].[Commentateur](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[Nom] [nvarchar](max) NOT NULL,
  CONSTRAINT [PK_Commentateur] PRIMARY KEY CLUSTERED 

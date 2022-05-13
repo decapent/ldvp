@@ -12,6 +12,7 @@ CREATE TABLE [ldvp].[Match](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[Date] [date] NULL,
 	[Type] [nvarchar](max) NULL,
+	[Saison] [int] NULL,
  CONSTRAINT [PK_Match] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC

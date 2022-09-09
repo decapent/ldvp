@@ -9,30 +9,31 @@ GO
 
 CREATE TABLE [saison3].[RencontreJoueur](
 	[rencontreId] [int] NOT NULL,
-	[joueurId] [int] NOT NULL,
-	[Equipe] [nvarchar](max) NOT NULL,
+	[equipeId] [int] NOT NULL,
+	[Ville] [nvarchar](max) NOT NULL,
 	[Home] [bit] NOT NULL,
 	[ScoredGoals] [int] NULL,
 	[AllowedGoals] [int] NULL,
 	[Shots] [int] NULL,
 	[ShotAgainst] [int] NULL,
-	[TotalBreakaways] [int] NULL,
-	[BreakawaysSucceeded] [int] NULL,
-	[TotalOneTimer] [int] NULL,
-	[OneTimerSucceeded] [int] NULL,
-	[TotalFaceoffs] [int] NULL,
-	[FaceoffsWon] [int] NULL,
-	[BodyChecks] [int] NULL,
- CONSTRAINT [PK_RencontreJoueur] PRIMARY KEY CLUSTERED 
+	[PassesPct] [float] NULL,
+	[TimeOnAttackInSecs] [int] NULL,
+	[Hits] [int] NULL,
+	[HitsPct] [float] NULL,
+	[Takeaway] [int] NULL,
+	[Giveaway] [int] NULL,
+	[Interceptions] [int] NULL,
+	[BlockedShots] [int] NULL,
+ CONSTRAINT [PK_RencontreEquipe] PRIMARY KEY CLUSTERED 
 (
 	[rencontreId] ASC,
-	[joueurId] ASC
+	[equipeId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-ALTER TABLE [saison3].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Joueur] FOREIGN KEY([joueurId])
-REFERENCES [ldvp].[Joueur] ([id])
+ALTER TABLE [saison3].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Equipe] FOREIGN KEY([equipeId])
+REFERENCES [saison3].[Equipe] ([id])
 GO
 
 ALTER TABLE [saison3].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Joueur]
@@ -42,6 +43,5 @@ ALTER TABLE [saison3].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_Rencontr
 REFERENCES [ldvp].[Rencontre] ([id])
 GO
 
-ALTER TABLE [saison2].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Rencontre]
+ALTER TABLE [saison3].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Rencontre]
 GO
-

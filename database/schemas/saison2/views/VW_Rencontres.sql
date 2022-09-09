@@ -31,10 +31,10 @@ SELECT m.Date,
 	   (rj.OneTimerSucceeded/NULLIF(CAST(rj.TotalOneTimer AS decimal(6,3)),0)) AS OneTimerPct,
 	   (rj.FaceoffsWon/CAST(rj.TotalFaceoffs AS decimal(6,3))) AS FaceOffPct,
 	   (1 - (rj.AllowedGoals/CAST(rj.ShotAgainst AS decimal(6, 3)))) BlockRate
-  FROM Match m
-   INNER JOIN Rencontre r ON m.id = r.matchId
-     INNER JOIN RencontreJoueur rj ON r.id = rj.rencontreId
-	   INNER JOIN Joueur j ON rj.joueurId = j.id
-	   	INNER JOIN Commentateur c ON r.commentateurId = c.id
+  FROM ldvp.Match m
+   INNER JOIN ldvp.Rencontre r ON m.id = r.matchId
+     INNER JOIN saison2.RencontreJoueur rj ON r.id = rj.rencontreId
+	   INNER JOIN ldvp.Joueur j ON rj.joueurId = j.id
+	   	INNER JOIN ldvp.Commentateur c ON r.commentateurId = c.id
 GO
 

@@ -1,0 +1,16 @@
+USE [LDVP]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [saison3].[VW_ROSTER]
+AS
+SELECT        UPPER(e.Nom) AS TeamName, j1.Nom AS Joueur1, j2.Nom AS Joueur2
+FROM            saison3.Equipe AS e INNER JOIN
+                         ldvp.Joueur AS j1 ON j1.id = e.joueur1Id INNER JOIN
+                         ldvp.Joueur AS j2 ON j2.id = e.joueur2Id
+GO

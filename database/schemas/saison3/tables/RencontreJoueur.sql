@@ -16,14 +16,15 @@ CREATE TABLE [saison3].[RencontreJoueur](
 	[AllowedGoals] [int] NULL,
 	[Shots] [int] NULL,
 	[ShotAgainst] [int] NULL,
-	[PassesPct] [float] NULL,
-	[TimeOnAttackInSecs] [int] NULL,
-	[Hits] [int] NULL,
-	[HitsPct] [float] NULL,
-	[Takeaway] [int] NULL,
-	[Giveaway] [int] NULL,
-	[Interceptions] [int] NULL,
-	[BlockedShots] [int] NULL,
+	[TotalBreakaways] [int] NULL,
+	[BreakawaysSucceeded] [int] NULL,
+	[TotalOneTimer] [int] NULL,
+	[OneTimerSucceeded] [int] NULL,
+	[TotalFaceoffs] [int] NULL,
+	[FaceoffsWon] [int] NULL,
+	[BodyChecks] [int] NULL,
+	[AttackZoneInSec] [int] NULL,
+	[PassingPct] [float] NULL,
  CONSTRAINT [PK_RencontreEquipe] PRIMARY KEY CLUSTERED 
 (
 	[rencontreId] ASC,
@@ -32,11 +33,11 @@ CREATE TABLE [saison3].[RencontreJoueur](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-ALTER TABLE [saison3].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Equipe] FOREIGN KEY([equipeId])
+ALTER TABLE [saison3].[RencontreJoueur] WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Equipe] FOREIGN KEY([equipeId])
 REFERENCES [saison3].[Equipe] ([id])
 GO
 
-ALTER TABLE [saison3].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Joueur]
+ALTER TABLE [saison3].[RencontreJoueur] CHECK CONSTRAINT [FK_RencontreJoueur_Equipe]
 GO
 
 ALTER TABLE [saison3].[RencontreJoueur]  WITH CHECK ADD  CONSTRAINT [FK_RencontreJoueur_Rencontre] FOREIGN KEY([rencontreId])
